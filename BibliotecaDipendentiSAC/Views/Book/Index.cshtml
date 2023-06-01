@@ -1,0 +1,89 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h3>Lista dei Libri</h3>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-12">
+
+            <table class="table rounded-3 shadow table-striped table-light">
+                <thead>
+                    <tr>
+                        <th class="col" scope="col">Id</th>
+
+                        <th class="col-1" scope="col">Titolo</th>
+                        <th class="col-1" scope="col">Autore</th>
+                        <th class="col-2" scope="col">Descrizione</th>
+                        <th class="col-1" scope="col">Pagine</th>
+                        <th class="col-6" scope="col">Copie Disponibili</th>
+                        <th class="col-1" scope="col">Edizione</th>
+                        <th class="col" scope="col">Casa Editrice</th>
+                      
+                        <th class="col" scope="col">eBook</th>
+                        <th class="col" scope="col">Prenota</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Book dataModel in Model)
+                    {
+
+                        <tr>
+                            <th scope="row">@dataModel.Id</th>
+                         
+                            <td>@dataModel.Title</td>
+                            <td>@dataModel.Autore</td>
+                            <td>@dataModel.Description</td>
+                            <td>@dataModel.NumberOfPages</td>
+                            <td>@dataModel.AvailableCopies</td>
+                            <td>@dataModel.Edition</td>
+                            <td>@dataModel.Publisher</td>
+                        
+                            <td>@dataModel.eBook</td>
+                            @{
+                                if (@dataModel.Bookable == true)
+                                {
+                                <td>
+
+                                      
+                                    <a class="btn btn-sm btn-outline-success shadow" href="@Url.Action("Order", "Book", new { id = dataModel.Id })">
+                                         <span class="material-icons-outlined">
+                                             grade
+                                        </span>
+                                    </a>
+                                </td>
+                                } 
+                                else
+                                    {
+                                        <td>
+
+                                        <button type="submit " class="btn btn-sm btn-outline-danger pe-none">
+                                            <span class="material-icons-outlined">
+                                               error
+                                            </span>
+                                        </button>
+                                          
+                                            
+                                        </td>
+                                    }
+                                
+                                 }
+
+
+
+                            
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
